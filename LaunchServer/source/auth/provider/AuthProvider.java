@@ -68,5 +68,5 @@ public abstract class AuthProvider extends ConfigObject implements AutoCloseable
     public abstract void close() throws IOException;
 
     @LauncherAPI
-    public abstract AuthProviderResult auth(String login, String password, String ip) throws Throwable;
+    public abstract AuthProviderResult auth(String login, String password, String ip, String profile) throws Throwable;
 }

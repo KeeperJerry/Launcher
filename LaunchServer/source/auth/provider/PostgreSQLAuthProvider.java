@@ -32,7 +32,7 @@ public final class PostgreSQLAuthProvider extends AuthProvider
     }
 
     @Override
-    public AuthProviderResult auth(String login, String password, String ip) throws SQLException, AuthException
+    public AuthProviderResult auth(String login, String password, String ip, String profile) throws SQLException, AuthException
     {
         try (Connection c = postgreSQLHolder.getConnection(); PreparedStatement s = c.prepareStatement(query))
         {

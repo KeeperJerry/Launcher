@@ -16,19 +16,21 @@ public final class AuthRequest extends Request<Result>
 {
     private final String login;
     private final byte[] encryptedPassword;
+    private final String profileName;
 
     @LauncherAPI
-    public AuthRequest(Config config, String login, byte[] encryptedPassword)
+    public AuthRequest(Config config, String login, byte[] encryptedPassword, String profileName)
     {
         super(config);
         this.login = VerifyHelper.verify(login, VerifyHelper.NOT_EMPTY, "Login can't be empty");
         this.encryptedPassword = encryptedPassword.clone();
+        this.profileName = profileName;
     }
 
     @LauncherAPI
-    public AuthRequest(String login, byte[] encryptedPassword)
+    public AuthRequest(String login, byte[] encryptedPassword, String profileName)
     {
-        this(null, login, encryptedPassword);
+        this(null, login, encryptedPassword, profileName);
     }
 
     @Override
@@ -42,6 +44,7 @@ public final class AuthRequest extends Request<Result>
     {
         output.writeString(login, 255);
         output.writeByteArray(encryptedPassword, SecurityHelper.CRYPTO_MAX_LENGTH);
+        output.writeString(profileName, 255);
         output.flush();
 
         // Read UUID and access token

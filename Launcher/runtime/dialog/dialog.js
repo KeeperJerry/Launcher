@@ -162,7 +162,8 @@ function verifyLauncher(e) {
 
 function doAuth(profile, login, rsaPassword) {
     processing.resetOverlay();
-    overlay.show(processing.overlay, function(event) makeAuthRequest(login, rsaPassword, function(result)
+    LogHelper.debug(profile);
+    overlay.show(processing.overlay, function(event) makeAuthRequest(login, rsaPassword, profile, function(result)
         doUpdate(profile, result.pp, result.accessToken)
     ));
 }

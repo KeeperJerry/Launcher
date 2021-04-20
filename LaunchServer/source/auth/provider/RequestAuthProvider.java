@@ -23,13 +23,13 @@ public final class RequestAuthProvider extends AuthProvider
         response = Pattern.compile(block.getEntryValue("response", StringConfigEntry.class));
 
         // Verify is valid URL
-        IOHelper.verifyURL(getFormattedURL("urlAuthLogin", "urlAuthPassword", "urlAuthIP"));
+        IOHelper.verifyURL(getFormattedURL("urlAuthLogin", "urlAuthPassword", "urlAuthIP", "urlAuthProfile"));
     }
 
     @Override
-    public AuthProviderResult auth(String login, String password, String ip) throws IOException
+    public AuthProviderResult auth(String login, String password, String ip, String profile) throws IOException
     {
-        String currentResponse = IOHelper.request(new URL(getFormattedURL(login, password, ip)));
+        String currentResponse = IOHelper.request(new URL(getFormattedURL(login, password, ip, profile)));
 
         // Match username
         Matcher matcher = response.matcher(currentResponse);
@@ -44,8 +44,8 @@ public final class RequestAuthProvider extends AuthProvider
         // Do nothing
     }
 
-    private String getFormattedURL(String login, String password, String ip)
+    private String getFormattedURL(String login, String password, String ip, String profile)
     {
-        return CommonHelper.replace(url, "login", IOHelper.urlEncode(login), "password", IOHelper.urlEncode(password), "ip", IOHelper.urlEncode(ip));
+        return CommonHelper.replace(url, "login", IOHelper.urlEncode(login), "password", IOHelper.urlEncode(password), "ip", IOHelper.urlEncode(ip), "profile", IOHelper.urlEncode(profile));
     }
 }

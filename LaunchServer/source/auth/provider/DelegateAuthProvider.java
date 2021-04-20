@@ -17,9 +17,9 @@ public class DelegateAuthProvider extends AuthProvider
     }
 
     @Override
-    public AuthProviderResult auth(String login, String password, String ip) throws Throwable
+    public AuthProviderResult auth(String login, String password, String ip, String profile) throws Throwable
     {
-        return getDelegate().auth(login, password, ip);
+        return getDelegate().auth(login, password, ip, profile);
     }
 
     @Override

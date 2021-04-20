@@ -102,9 +102,10 @@ function makeLauncherRequest(callback) {
     startTask(task);
 }
 
-function makeAuthRequest(login, rsaPassword, callback) {
+function makeAuthRequest(login, rsaPassword, profile, callback) {
+
     var task = rsaPassword === null ? newTask(offlineAuthRequest(login)) :
-        newRequestTask(new AuthRequest(login, rsaPassword));
+        newRequestTask(new AuthRequest(login, rsaPassword, profile));
     processing.setTaskProperties(task, callback, null, true);
     task.updateMessage("Авторизация на сервере");
     startTask(task);

@@ -74,7 +74,7 @@ public final class MojangAuthProvider extends AuthProvider
     }
 
     @Override
-    public AuthProviderResult auth(String login, String password, String ip) throws Throwable
+    public AuthProviderResult auth(String login, String password, String ip, String profile) throws Throwable
     {
         JsonObject request = Json.object().
                 add("agent", Json.object().add("name", "Minecraft").add("version", 1)).

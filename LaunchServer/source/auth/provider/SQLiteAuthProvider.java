@@ -54,7 +54,7 @@ public final class SQLiteAuthProvider extends AuthProvider
         this.queryParams = block.getEntry("queryParams", ListConfigEntry.class).stream(StringConfigEntry.class).toArray(String[]::new);
     }
 
-    public AuthProviderResult auth(String login, String password, String ip) throws SQLException, AuthException
+    public AuthProviderResult auth(String login, String password, String ip, String profile) throws SQLException, AuthException
     {
         Connection c = this.sqliteconnection;
         Throwable var5 = null;

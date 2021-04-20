@@ -42,7 +42,7 @@ public final class FileAuthProvider extends DigestAuthProvider
     }
 
     @Override
-    public AuthProviderResult auth(String login, String password, String ip) throws IOException
+    public AuthProviderResult auth(String login, String password, String ip, String profile) throws IOException
     {
         Entry entry;
         synchronized (cacheLock)

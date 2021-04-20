@@ -40,6 +40,7 @@ public final class AuthResponse extends Response
     {
         String login = input.readString(255);
         byte[] encryptedPassword = input.readByteArray(SecurityHelper.CRYPTO_MAX_LENGTH);
+        String profile = input.readString(255);
 
         // Decrypt password
         String password;
@@ -64,7 +65,7 @@ public final class AuthResponse extends Response
                 AuthProvider.authError(server.config.authRejectString);
                 return;
             }
-            result = server.config.authProvider.auth(login, password, ip);
+            result = server.config.authProvider.auth(login, password, ip, profile);
             if (!VerifyHelper.isValidUsername(result.username))
             {
                 AuthProvider.authError(String.format("Illegal result: '%s'", result.username));

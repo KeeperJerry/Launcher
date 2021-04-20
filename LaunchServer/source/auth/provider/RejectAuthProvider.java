@@ -17,7 +17,7 @@ public final class RejectAuthProvider extends AuthProvider
     }
 
     @Override
-    public AuthProviderResult auth(String login, String password, String ip) throws AuthException
+    public AuthProviderResult auth(String login, String password, String ip, String profile) throws AuthException
     {
         return authError(message);
     }
